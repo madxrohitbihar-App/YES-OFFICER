@@ -60,11 +60,11 @@
             }
         };
 
-        // Generate 21-letter hidden key backend logic
+        // Generate 28-letter hidden key backend logic
         function generateSecretKey() {
             const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
             let generatedKey = '';
-            for (let i = 0; i < 21; i++) {
+            for (let i = 0; i < 28; i++) {
                 generatedKey += chars.charAt(Math.floor(Math.random() * chars.length));
             }
             return generatedKey;
