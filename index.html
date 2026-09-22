@@ -1,122 +1,271 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MADXROHITBIHAR | App Unlock Portal</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --bg-deep: #05050a;
-            --bg-card: rgba(13, 15, 26, 0.9);
-            --border-neon: rgba(0, 242, 254, 0.3);
-            --neon-cyan: #00f2fe;
-            --neon-green: #00ff66;
-            --text-primary: #ffffff;
-            --text-secondary: #94a3b8;
-            --gradient-btn: linear-gradient(135deg, #00c6ff 0%, #0072ff 100%);
-        }
-        body { background-color: var(--bg-deep); color: var(--text-primary); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: radial-gradient(circle at 50% -20%, #1a1c3a 0%, var(--bg-deep) 70%); font-family: sans-serif; }
-        .card { background: var(--bg-card); border: 1px solid var(--border-neon); padding: 30px; border-radius: 20px; text-align: center; max-width: 360px; width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.8); }
-        h2 { color: var(--neon-cyan); margin-bottom: 10px; }
-        .key-input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid var(--border-neon); background: rgba(255,255,255,0.05); color: #fff; text-align: center; margin-bottom: 15px; outline: none; text-transform: uppercase; font-weight: bold; letter-spacing: 1px; }
-        .btn { padding: 12px; border-radius: 12px; color: white; border: none; cursor: pointer; font-weight: bold; width: 100%; margin-bottom: 10px; }
-        .btn-get { background: rgba(255, 255, 255, 0.1); border: 1px solid var(--border-neon); }
-        .btn-verify { background: var(--gradient-btn); }
-        #status-msg { font-size: 13px; margin-top: 10px; font-weight: bold; }
-        #mainAppContent { display: none; text-align: center; }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Parmar Academy</title>
+  <meta name="description" content="Explore all Parmar Academy online batches for competitive exams.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --pw-blue: #2563eb;
+      --pw-navy: #111827;
+      --pw-dark: #1e293b;
+      --pw-gold: #f59e0b;
+      --pw-green: #10b981;
+      --pw-chalk: #2d6a4f;
+      --pw-bg: #f8fafc;
+      --border-color: #e2e8f0;
+      --card-bg: #ffffff;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: var(--pw-bg); color: var(--text-main); min-height: 100vh; display: flex; flex-direction: column; line-height: 1.5; }
+    .top-header { position: sticky; top: 0; z-index: 50; background: #ffffff; border-bottom: 1px solid var(--border-color); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04); }
+    .header-container { max-width: 1100px; margin: 0 auto; padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; }
+    .header-left { display: flex; align-items: center; gap: 12px; }
+    .pw-brand-badge { display: flex; align-items: center; gap: 8px; background: #f8fafc; border: 1px solid var(--border-color); padding: 4px 12px 4px 6px; border-radius: 30px; }
+    .pw-header-logo { width: 30px; height: 30px; border-radius: 50%; object-fit: contain; }
+    .pw-title { font-size: 15px; font-weight: 800; color: #000000; }
+    .pw-verified { width: 15px; height: 15px; background: #2563eb; color: #ffffff; border-radius: 50%; font-size: 10px; display: inline-flex; align-items: center; justify-content: center; }
+    .main-wrap { max-width: 1100px; width: 100%; margin: 0 auto; padding: 16px 16px 80px; flex: 1; }
+    .search-wrapper { margin: 4px 0 20px; position: relative; }
+    .search-input { width: 100%; padding: 13px 44px 13px 46px; font-size: 14.5px; border: 1.5px solid #cbd5e1; border-radius: 12px; background: #ffffff; outline: none; }
+    .search-input:focus { border-color: var(--pw-blue); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15); }
+    .search-icon { position: absolute; left: 15px; top: 14px; color: #94a3b8; }
+    .clear-search-btn { position: absolute; right: 14px; top: 12px; width: 24px; height: 24px; border-radius: 50%; border: none; background: #e2e8f0; color: #475569; display: none; place-items: center; cursor: pointer; }
+    .clear-search-btn.active { display: grid; }
+    .heading-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .page-heading { font-size: 23px; font-weight: 800; color: var(--pw-navy); display: flex; align-items: center; gap: 10px; }
+    .green-board { display: inline-flex; align-items: center; justify-content: center; background: linear-gradient(135deg, #1b4332 0%, #2d6a4f 100%); color: #ffffff; padding: 4px 12px; border-radius: 8px; border: 2px solid #52b788; font-size: 14px; font-weight: 900; }
+    .sub-count-text { font-size: 13px; color: var(--text-muted); margin-bottom: 14px; }
+    .chips-row { display: flex; align-items: center; gap: 8px; overflow-x: auto; padding-bottom: 14px; scrollbar-width: none; }
+    .chips-row::-webkit-scrollbar { display: none; }
+    .filter-chip { white-space: nowrap; padding: 7px 16px; border-radius: 24px; border: 1px solid #cbd5e1; background: #ffffff; color: #334155; font-size: 13px; font-weight: 600; cursor: pointer; }
+    .filter-chip.active { background: var(--pw-navy); color: #ffffff; border-color: var(--pw-navy); }
+    .batches-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+    @media (min-width: 680px) { .batches-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1000px) { .batches-grid { grid-template-columns: repeat(3, 1fr); } }
+    .batch-card { background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 18px; overflow: hidden; box-shadow: 0 4px 16px rgba(0,0,0,0.04); display: flex; flex-direction: column; transition: transform 0.2s; }
+    .batch-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(0,0,0,0.08); }
+    .card-banner { position: relative; width: 100%; background: #0f172a; }
+    .banner-img { width: 100%; height: 165px; object-fit: cover; display: block; }
+    .dynamic-batch-banner { width: 100%; height: 165px; padding: 14px 16px; display: flex; flex-direction: column; justify-content: space-between; background: linear-gradient(135deg, #1e1b4b 0%, #2563eb 100%); color: #fff; }
+    .card-content { padding: 16px; display: flex; flex-direction: column; flex: 1; }
+    .category-label { font-size: 12.5px; font-weight: 700; color: #ea580c; text-transform: uppercase; }
+    .batch-title { font-size: 16.5px; font-weight: 800; color: var(--pw-navy); margin: 8px 0 10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .details-row, .status-row { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--text-muted); margin-bottom: 6px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: #10b981; }
+    .card-footer { margin-top: auto; padding-top: 14px; border-top: 1px solid #f1f5f9; display: flex; align-items: center; justify-content: space-between; }
+    .price-main { font-size: 18px; font-weight: 800; color: var(--pw-navy); }
+    .buy-btn { background: var(--pw-navy); color: #ffffff; border: none; padding: 10px 18px; border-radius: 10px; font-size: 13.5px; font-weight: 700; text-decoration: none; cursor: pointer; }
+    .developer-footer { text-align: center; margin-top: 40px; font-size: 12px; color: var(--text-muted); font-weight: 600; }
+    .empty-state { text-align: center; padding: 60px 20px; background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 18px; display: none; grid-column: 1/-1; }
+    .reset-btn { background: var(--pw-blue); color: #fff; border: none; padding: 9px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 12px; }
+    .load-more-wrap { margin-top: 32px; text-align: center; }
+    .load-more-btn { background: #ffffff; border: 1.5px solid #2563eb; color: #2563eb; padding: 12px 28px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; }
+  </style>
 </head>
 <body>
+  <header class="top-header">
+    <div class="header-container">
+      <div class="header-left">
+        <div class="pw-brand-badge">
+          <img class="pw-header-logo" src="https://i.postimg.cc/L5TGNVcQ/image-search-1790090692923.webp" alt="Parmar Academy Logo">
+          <span class="pw-title">Parmar Academy</span>
+          <span class="pw-verified">✓</span>
+        </div>
+      </div>
+    </div>
+  </header>
 
-    <div class="card" id="authScreen">
-        <h2>Device Verification</h2>
-        <p style="color:var(--text-secondary); font-size: 13px; margin-bottom: 20px;">Get Key par click karke access key generate karein aur niche paste karein.</p>
-        
-        <input type="text" id="accessKeyInput" class="key-input" placeholder="ENTER ACCESS TOKEN">
-        
-        <button class="btn btn-get" onclick="openAroLinks()">
-            <i class="fa-solid fa-key"></i> Get Key
-        </button>
-        <button class="btn btn-verify" onclick="verifyUserKey()">
-            <i class="fa-solid fa-unlock"></i> Verify & Open App
-        </button>
-
-        <div id="status-msg"></div>
+  <main class="main-wrap">
+    <div class="search-wrapper">
+      <span class="search-icon">🔍</span>
+      <input type="text" id="searchInput" class="search-input" placeholder="Search batches by name, exam..." autocomplete="off">
+      <button id="clearSearchBtn" class="clear-search-btn">✕</button>
     </div>
 
-    <div id="mainAppContent">
-        <h1 style="color: var(--neon-green);">Welcome to MADXROHITBIHAR!</h1>
-        <p style="color:var(--text-secondary);">App successfully unlocked for 24 Hours!</p>
+    <div class="heading-bar">
+      <h1 class="page-heading">
+        All Batches
+        <div class="green-board" id="greenBoardCount">0</div>
+      </h1>
+    </div>
+    <div class="sub-count-text" id="subCountText">Loading batches...</div>
+
+    <div class="chips-row" id="chipsRow">
+      <button class="filter-chip active" data-filter="all">All</button>
+      <button class="filter-chip" data-filter="parmar">Parmar</button>
+      <button class="filter-chip" data-filter="maths">Maths</button>
+      <button class="filter-chip" data-filter="reasoning">Reasoning</button>
+      <button class="filter-chip" data-filter="ssc">SSC</button>
+      <button class="filter-chip" data-filter="english">English</button>
     </div>
 
-    <script>
-        // Check on page load if 24 hours session is still valid
-        window.onload = function() {
-            const expiryTime = localStorage.getItem("app_expiry_time");
-            if (expiryTime && new Date().getTime() < parseInt(expiryTime)) {
-                document.getElementById('authScreen').style.display = 'none';
-                document.getElementById('mainAppContent').style.display = 'block';
-            }
-        };
+    <div class="batches-grid" id="batchesGrid"></div>
 
-        // Generate 28-letter hidden key backend logic
-        function generateSecretKey() {
-            const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            let generatedKey = '';
-            for (let i = 0; i < 28; i++) {
-                generatedKey += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return generatedKey;
+    <div class="empty-state" id="emptyState">
+      <h3>No Batches Found</h3>
+      <p>Try searching for another term.</p>
+      <button class="reset-btn" id="resetFilterBtn">Reset Search</button>
+    </div>
+
+    <div class="load-more-wrap" id="loadMoreWrap">
+      <button class="load-more-btn" id="loadMoreBtn" style="display:none;">Load More (+10)</button>
+    </div>
+
+    <div class="developer-footer">
+      Developed By MedxrohitBihar
+    </div>
+  </main>
+
+  <script>
+    // Yahan aap apne batches ke photo link aur enroll link daal sakte hain
+    const fallbackBatches = [
+      { id: "1", name: "Parmar 4.0 Batch", class: "General", exam: "Parmar", photo: "https://i.postimg.cc/L5TGNVcQ/image-search-1790090692923.webp", link: "https://tgdoraemon.vercel.app/api/file?path=content%2FParmar%20Batches%2FParmar%204.0.html&token=74901e4e16537e12fea0a3cd97ed2d4091e8e3df35b7e6f4c20ab4709bc05c50&exp=1790092122769", amount: 0 },
+      { id: "2", name: "Bhutesh Maths Foundation", class: "Foundation", exam: "Maths", photo: "https://i.postimg.cc/5y0h0RKH/image-search-1790090692923.webp", link: "https://tgdoraemon.vercel.app/api/file?path=content%2FParmar%20Batches%2FBhutesh%20Maths%20Foundation.html&token=5db7468771b4abdbfa0a588516ee61338db5285ff6b383ca3a1159dabf9bf1b2&exp=1790092182852", amount: 0 },
+      { id: "3", name: "Parmar Maths Revision", class: "Revision", exam: "Maths", photo: "https://i.postimg.cc/5y0h0RKH/image-search-1790090692923.webp", link: "https://tgdoraemon.vercel.app/api/file?path=content%2FParmar%20Batches%2FParmar%20Maths%20Revision.html&token=870d9e3058a56a56263e58db28e75c0e5701ece31fec3c18f3d997d92d18a049&exp=1790092236453", amount: 0 },
+      { id: "4", name: "Parmar Reasoning Foundation", class: "Foundation", exam: "Reasoning", photo: "https://i.postimg.cc/5y0h0RKH/image-search-1790090692923.webp", link: "https://tgdoraemon.vercel.app/api/file?path=content%2FParmar%20Batches%2FParmar%20Reasoning%20Foundation.html&token=fe6c2c90546b57f2d662d924ad624f9fccded80cb91e57b9a3ede276a683830c&exp=1790092271182", amount: 0 },
+      { id: "5", name: "Parmar Reasoning Revision Vod batch", class: "VOD", exam: "Reasoning", photo: "https://i.postimg.cc/5y0h0RKH/image-search-1790090692923.webp", link: "https://tgdoraemon.vercel.app/api/file?path=content%2FParmar%20Batches%2FParmar%20Reasoning%20Revision%20Vod.html&token=f49b1e55c0b82e23aa4a13ecf34c24e3527463de644904514bab50775e7343e9&exp=1790092309977", amount: 0 },
+      { id: "6", name: "PC Batch 2.0", class: "Advanced", exam: "Parmar", photo: "https://i.postimg.cc/5y0h0RKH/image-search-1790090692923.webp", link: "https://tgdoraemon.vercel.app/api/file?path=content%2FParmar%20Batches%2FPC%20Batch%202.0.html&token=3f7e1623ef5c4e84d63c2165b22d9155c9dc12ba7f7419bfb9dcaf0e7988c777&exp=1790092387225", amount: 0 },
+      { id: "7", name: "UP Lekhpal Batch", class: "State Exam", exam: "Lekhpal", photo: "https://i.postimg.cc/5y0h0RKH/image-search-1790090692923.webp", link: "https://tgdoraemon.vercel.app/api/file?path=content%2FParmar%20Batches%2FUP%20Lekhpal.html&token=cdf59c7a869fb21c405dec8b5f2a6b9b40f62ace5d149f6ef4a9ede6d68a4a50&exp=1790092419116", amount: 0 },
+      { id: "8", name: "SSC Repeaters BATCH", class: "Target", exam: "SSC", photo: "https://i.postimg.cc/PfChdLGx/IMG-20260731-232914-129.jpg",  link: "https://tgdoraemon.vercel.app/api/file?path=content%2FParmar%20Batches%2FSSC%20Repeaters.html&token=e37c64139d0768ab279610cad0db44a286f7cc064f711c1c07762ef52b56e7e3&exp=1790092690967", amount: 0 },
+      { id: "9", name: "Parmar English Batch", class: "Language", exam: "English", photo: "https://i.postimg.cc/5y0h0RKH/image-search-1790090692923.webp", link: "#", amount: 0 },
+      { id: "10", name: "Parmar Monthly CA Batch", class: "Current Affairs", exam: "Parmar", photo: "https://i.postimg.cc/5y0h0RKH/image-search-1790090692923.webp", link: "#", amount: 0 }
+    ];
+
+    let allBatchesData = [];
+    let displayedCount = 10;
+    let currentSearch = "";
+    let currentFilter = "all";
+
+    const batchesGrid = document.getElementById("batchesGrid");
+    const searchInput = document.getElementById("searchInput");
+    const clearSearchBtn = document.getElementById("clearSearchBtn");
+    const greenBoardCount = document.getElementById("greenBoardCount");
+    const subCountText = document.getElementById("subCountText");
+    const emptyState = document.getElementById("emptyState");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+    const chipsRow = document.getElementById("chipsRow");
+    const resetFilterBtn = document.getElementById("resetFilterBtn");
+
+    async function loadAllData() {
+      subCountText.textContent = "Loading batches...";
+      try {
+        const res = await fetch("https://studystark.github.io/batches/batches.json");
+        const data = await res.json();
+        
+        if (Array.isArray(data) && data.length > 0) {
+          allBatchesData = data.map(item => ({
+            id: item.batch_id || item._id || item.id || Math.random(),
+            name: item.name || "Parmar Batch",
+            class: item.class || item.className || "",
+            exam: Array.isArray(item.exam) ? item.exam.join(", ") : (item.exam || ""),
+            photo: item.photo || item.previewImage || "",
+            link: item.link || "#",
+            amount: item.amount || 0
+          }));
+        } else {
+          allBatchesData = fallbackBatches;
         }
+      } catch (err) {
+        console.warn("Using custom Parmar Academy batches:", err);
+        allBatchesData = fallbackBatches;
+      }
 
-        function openAroLinks() {
-            const apiToken = "828c34db80ec53e94e7174f5f52e0b274a38ab2d";
-            const freshKey = generateSecretKey();
-            localStorage.setItem("expected_app_key", freshKey);
+      filterAndRender();
+    }
 
-            const targetUrl = "https://madxrohit-bihar.github.io/ALL-INSTITUTE-MADXROHITBIHAR/?key=" + freshKey;
-            const apiUrl = `https://arolinks.com/api?api=${apiToken}&url=${encodeURIComponent(targetUrl)}`;
+    function filterAndRender() {
+      let filtered = allBatchesData;
 
-            const msgDiv = document.getElementById("status-msg");
-            msgDiv.style.color = "#00f2fe";
-            msgDiv.innerText = "Generating Link...";
-            
-            fetch(apiUrl)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === "success" && data.shortenedUrl) {
-                        window.location.href = data.shortenedUrl;
-                    } else {
-                        msgDiv.style.color = "#ff4d4d";
-                        msgDiv.innerText = "Error generating link!";
-                    }
-                })
-                .catch(() => {
-                    msgDiv.style.color = "#ff4d4d";
-                    msgDiv.innerText = "Network Error!";
-                });
-        }
+      if (currentFilter !== "all") {
+        filtered = filtered.filter(b => `${b.name} ${b.exam} ${b.class}`.toLowerCase().includes(currentFilter));
+      }
 
-        function verifyUserKey() {
-            const userKey = document.getElementById("accessKeyInput").value.trim().toUpperCase();
-            const expectedKey = localStorage.getItem("expected_app_key");
-            const msgDiv = document.getElementById("status-msg");
+      if (currentSearch) {
+        filtered = filtered.filter(b => `${b.name} ${b.exam} ${b.class}`.toLowerCase().includes(currentSearch.toLowerCase()));
+      }
 
-            // Verify key and grant 24 hours access
-            if (expectedKey && userKey === expectedKey) {
-                // Set expiry time to 24 hours from now (24 * 60 * 60 * 1000 ms)
-                const twentyFourHours = 24 * 60 * 60 * 1000;
-                const expiryTimestamp = new Date().getTime() + twentyFourHours;
-                localStorage.setItem("app_expiry_time", expiryTimestamp);
+      greenBoardCount.textContent = filtered.length;
+      subCountText.textContent = `${filtered.length} courses available for your preparation`;
 
-                document.getElementById('authScreen').style.display = 'none';
-                document.getElementById('mainAppContent').style.display = 'block';
-            } else {
-                msgDiv.style.color = "#ff4d4d";
-                msgDiv.innerText = "Invalid Key!";
-            }
-        }
-    </script>
+      const chunk = filtered.slice(0, displayedCount);
+
+      if (chunk.length === 0) {
+        batchesGrid.innerHTML = "";
+        emptyState.style.display = "block";
+        loadMoreBtn.style.display = "none";
+        return;
+      }
+
+      emptyState.style.display = "none";
+      batchesGrid.innerHTML = chunk.map(b => `
+        <article class="batch-card">
+          <div class="card-banner">
+            ${b.photo ? `<img class="banner-img" src="${b.photo}" alt="${b.name}" loading="lazy" onerror="this.style.display='none'">` : `<div class="dynamic-batch-banner"><h3>${b.name}</h3></div>`}
+          </div>
+          <div class="card-content">
+            <span class="category-label">${b.class ? b.class : 'Parmar Academy'}</span>
+            <h2 class="batch-title">${b.name}</h2>
+            <div class="details-row"><span>📖 ${b.exam || 'General'}</span></div>
+            <div class="status-row"><span class="status-dot"></span><span>Ongoing</span></div>
+            <div class="card-footer">
+              <div class="price-main">Free</div>
+              <a href="${b.link}" class="buy-btn">Enroll Now</a>
+            </div>
+          </div>
+        </article>
+      `).join("");
+
+      loadMoreBtn.style.display = displayedCount < filtered.length ? "inline-block" : "none";
+    }
+
+    searchInput.addEventListener("input", (e) => {
+      currentSearch = e.target.value.trim();
+      clearSearchBtn.classList.toggle("active", currentSearch.length > 0);
+      displayedCount = 10;
+      filterAndRender();
+    });
+
+    clearSearchBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      currentSearch = "";
+      clearSearchBtn.classList.remove("active");
+      displayedCount = 10;
+      filterAndRender();
+    });
+
+    chipsRow.addEventListener("click", (e) => {
+      const btn = e.target.closest(".filter-chip");
+      if (!btn) return;
+      document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+      btn.classList.add("active");
+      currentFilter = btn.dataset.filter;
+      displayedCount = 10;
+      filterAndRender();
+    });
+
+    loadMoreBtn.addEventListener("click", () => {
+      displayedCount += 10;
+      filterAndRender();
+    });
+
+    resetFilterBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      currentSearch = "";
+      currentFilter = "all";
+      document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+      document.querySelector('[data-filter="all"]').classList.add("active");
+      displayedCount = 10;
+      filterAndRender();
+    });
+
+    loadAllData();
+  </script>
 </body>
 </html>
