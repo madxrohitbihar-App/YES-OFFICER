@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>Yes Officer | Portal</title>
+    <title>Yes Officer & Gyanbindu Live | Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -83,12 +83,13 @@
 
         .splash-title {
             margin-top: 20px;
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 800;
             background: var(--gradient-cyber);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
+            text-align: center;
         }
 
         /* Auth Screen (Verification Overlay) */
@@ -658,7 +659,7 @@
         <div class="splash-avatar">
             <img src="https://i.postimg.cc/7PzfCjSP/image-search-1790297354536.webp" alt="Logo">
         </div>
-        <div class="splash-title">YES OFFICER</div>
+        <div class="splash-title">YES OFFICER & GYANBINDU LIVE</div>
     </div>
 
     <!-- Device Verification Screen -->
@@ -725,7 +726,7 @@
                 <span class="live-dot"></span>
                 <span id="section-label">All Active App</span>
             </div>
-            <span id="active-count" style="color: var(--neon-cyan);">1 Available</span>
+            <span id="active-count" style="color: var(--neon-cyan);">2 Available</span>
         </div>
 
         <!-- TAB 1: ACTIVE APPS -->
@@ -741,6 +742,20 @@
                 <div class="app-actions">
                     <button class="fav-btn" onclick="toggleFavorite(this, 'YES OFFICER')"><i class="fa-solid fa-heart"></i></button>
                     <a href="https://yesofficer.studybeepro.site/" class="open-btn" target="_blank">Open</a>
+                </div>
+            </div>
+
+            <div class="app-card" data-name="GYANBINDU LIVE">
+                <div class="app-info">
+                    <img src="https://i.postimg.cc/2yY1CtGd/image-search-1790839622975.png" class="app-icon" alt="GYANBINDU LIVE">
+                    <div class="app-details">
+                        <span class="app-name">GYANBINDU LIVE</span>
+                        <span class="app-tag">Server Active</span>
+                    </div>
+                </div>
+                <div class="app-actions">
+                    <button class="fav-btn" onclick="toggleFavorite(this, 'GYANBINDU LIVE')"><i class="fa-solid fa-heart"></i></button>
+                    <a href="https://studyapkmod-live.vercel.app/?app=gyan_bindu&view=courses" class="open-btn" target="_blank">Open</a>
                 </div>
             </div>
         </div>
@@ -891,7 +906,7 @@
             if (tabName === 'active') {
                 document.getElementById('tab-active').classList.add('active-tab');
                 label.innerText = "All Active App";
-                countLabel.innerText = "1 Available";
+                countLabel.innerText = "2 Available";
             } else if (tabName === 'shayari') {
                 document.getElementById('tab-shayari').classList.add('active-tab');
                 label.innerText = "Shaheed Bhagat Singh";
