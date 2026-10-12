@@ -726,7 +726,7 @@
                 <span class="live-dot"></span>
                 <span id="section-label">All Active App</span>
             </div>
-            <span id="active-count" style="color: var(--neon-cyan);">2 Available</span>
+            <span id="active-count" style="color: var(--neon-cyan);">5 Available</span>
         </div>
 
         <!-- TAB 1: ACTIVE APPS -->
@@ -736,12 +736,13 @@
                     <img src="https://i.postimg.cc/7PzfCjSP/image-search-1790297354536.webp" class="app-icon" alt="YES OFFICER">
                     <div class="app-details">
                         <span class="app-name">YES OFFICER</span>
-                        <span class="app-tag">Server Active</span>
+                        <span class="app-tag">Server Active • Fullscreen Ready</span>
                     </div>
                 </div>
                 <div class="app-actions">
                     <button class="fav-btn" onclick="toggleFavorite(this, 'YES OFFICER')"><i class="fa-solid fa-heart"></i></button>
-                    <a href="https://yesofficer.studybeepro.site/" class="open-btn" target="_blank">Open</a>
+                    <!-- Added fullscreen & media capabilities -->
+                    <a href="https://yesofficer.studybeepro.site/" class="open-btn" target="_blank" rel="noopener">Open</a>
                 </div>
             </div>
 
@@ -750,12 +751,54 @@
                     <img src="https://i.postimg.cc/2yY1CtGd/image-search-1790839622975.png" class="app-icon" alt="GYANBINDU LIVE">
                     <div class="app-details">
                         <span class="app-name">GYANBINDU LIVE</span>
-                        <span class="app-tag">Server Active</span>
+                        <span class="app-tag">Server Active • Fullscreen Ready</span>
                     </div>
                 </div>
                 <div class="app-actions">
                     <button class="fav-btn" onclick="toggleFavorite(this, 'GYANBINDU LIVE')"><i class="fa-solid fa-heart"></i></button>
-                    <a href="https://studyapkmod-live.vercel.app/?app=gyan_bindu&view=courses" class="open-btn" target="_blank">Open</a>
+                    <a href="https://studyapkmod-live.vercel.app/?app=gyan_bindu&view=courses" class="open-btn" target="_blank" rel="noopener">Open</a>
+                </div>
+            </div>
+
+            <div class="app-card" data-name="SCIENCE AND FUN">
+                <div class="app-info">
+                    <img src="https://i.postimg.cc/gksdc0cV/image-search-1791027234501.jpg" class="app-icon" alt="SCIENCE AND FUN">
+                    <div class="app-details">
+                        <span class="app-name">SCIENCE AND FUN</span>
+                        <span class="app-tag">Server Active • Fullscreen Ready</span>
+                    </div>
+                </div>
+                <div class="app-actions">
+                    <button class="fav-btn" onclick="toggleFavorite(this, 'SCIENCE AND FUN')"><i class="fa-solid fa-heart"></i></button>
+                    <a href="https://madxrohitbihar-app.github.io/science-and-fun-pro/" class="open-btn" target="_blank" rel="noopener">Open</a>
+                </div>
+            </div>
+
+            <div class="app-card" data-name="SACHIN ACADEMY">
+                <div class="app-info">
+                    <img src="https://i.postimg.cc/MphZTcLR/image-search-1783742533521.jpg" class="app-icon" alt="SACHIN ACADEMY">
+                    <div class="app-details">
+                        <span class="app-name">SACHIN ACADEMY</span>
+                        <span class="app-tag">Server Active • Fullscreen Ready</span>
+                    </div>
+                </div>
+                <div class="app-actions">
+                    <button class="fav-btn" onclick="toggleFavorite(this, 'SACHIN ACADEMY')"><i class="fa-solid fa-heart"></i></button>
+                    <a href="https://madxrohitbihar-app.github.io/Sachin-Academy-pro/" class="open-btn" target="_blank" rel="noopener">Open</a>
+                </div>
+            </div>
+
+            <div class="app-card" data-name="VIDYAGRAM">
+                <div class="app-info">
+                    <img src="https://i.postimg.cc/PqbrQWnH/image-search-1791123215735.png" class="app-icon" alt="VIDYAGRAM">
+                    <div class="app-details">
+                        <span class="app-name">VIDYAGRAM</span>
+                        <span class="app-tag">Server Active • Fullscreen Ready</span>
+                    </div>
+                </div>
+                <div class="app-actions">
+                    <button class="fav-btn" onclick="toggleFavorite(this, 'VIDYAGRAM')"><i class="fa-solid fa-heart"></i></button>
+                    <a href="https://madxrohitbihar-app.github.io/Vidyagram-pro/" class="open-btn" target="_blank" rel="noopener">Open</a>
                 </div>
             </div>
         </div>
@@ -800,7 +843,7 @@
     </div>
 
     <script>
-        // Check 24 hours session immediately on load
+        // Check session validity immediately before page renders fully
         (function() {
             const expiryTime = localStorage.getItem("app_expiry_time");
             const authScreen = document.getElementById('authScreen');
@@ -809,7 +852,6 @@
             } else {
                 if(authScreen) authScreen.style.display = 'flex';
             }
-            loadFavoritesState();
         })();
 
         function generateSecretKey() {
@@ -885,7 +927,7 @@
                 document.getElementById('authScreen').style.display = 'none';
 
                 if (window.history.replaceState) {
-                    const cleanUrl = "https://madxrohitbihar-app.github.io/Yes-KEY/";
+                    const cleanUrl = window.location.origin + window.location.pathname;
                     window.history.replaceState({path: cleanUrl}, '', cleanUrl);
                 }
             } else {
@@ -906,7 +948,7 @@
             if (tabName === 'active') {
                 document.getElementById('tab-active').classList.add('active-tab');
                 label.innerText = "All Active App";
-                countLabel.innerText = "2 Available";
+                countLabel.innerText = "5 Available";
             } else if (tabName === 'shayari') {
                 document.getElementById('tab-shayari').classList.add('active-tab');
                 label.innerText = "Shaheed Bhagat Singh";
@@ -977,6 +1019,16 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
+            const expiryTime = localStorage.getItem("app_expiry_time");
+            const authScreen = document.getElementById('authScreen');
+            if (expiryTime && new Date().getTime() < parseInt(expiryTime)) {
+                if(authScreen) authScreen.style.display = 'none';
+            } else {
+                if(authScreen) authScreen.style.display = 'flex';
+            }
+
+            loadFavoritesState();
+
             const splash = document.getElementById("splash-screen");
             
             if (!sessionStorage.getItem('splashShown')) {
